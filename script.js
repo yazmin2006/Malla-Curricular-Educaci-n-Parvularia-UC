@@ -1,0 +1,142 @@
+
+const cursos = [
+  {
+    semestre: 1,
+    cursos: [
+      { id: 's1c1', nombre: 'Desarrollo y Aprendizaje de la Persona' },
+      { id: 's1c2', nombre: 'Fundamentos Pedagógicos y Filosóficos' },
+      { id: 's1c3', nombre: 'Exploración de los Lenguajes Artísticos' },
+      { id: 's1c4', nombre: 'Perspectivas de la Educación en la Primera Infancia' },
+      { id: 's1c5', nombre: 'Comunicación Académica en la Universidad' },
+      { id: 's1c6', nombre: 'Alfabetización Emocional' },
+    ]
+  },
+  {
+    semestre: 2,
+    cursos: [
+      { id: 's2c1', nombre: 'Factores del Desarrollo Integral', req: ['s1c2'] },
+      { id: 's2c2', nombre: 'Políticas Educativas y Profesión Docente', req: ['s1c2'] },
+      { id: 's2c3', nombre: 'Identidad Personal y Profesional Docente', req: ['s1c2'] },
+      { id: 's2c4', nombre: 'Didáctica en Primera Infancia I', req: ['s1c2'] },
+      { id: 's2c5', nombre: 'Bases Epistemológicas', req: ['s1c2'] },
+      { id: 's2c6', nombre: 'Neurodesarrollo y Corporalidad', req: ['s1c2'] },
+      { id: 's2c7', nombre: 'Bienestar Integral del Párvulo', req: ['s1c2'] },
+    ]
+  },
+  {
+    semestre: 3,
+    cursos: [
+      { id: 's3c1', nombre: 'Diseño Curricular', req: ['s2c4'] },
+      { id: 's3c2', nombre: 'Desarrollo del Lenguaje Verbal', req: ['s2c4'] },
+      { id: 's3c3', nombre: 'Artes Visuales y su Didáctica', req: ['s2c4'] },
+      { id: 's3c4', nombre: 'Didáctica en Primera Infancia II', req: ['s2c4'] },
+      { id: 's3c5', nombre: 'Pensamiento Matemático', req: ['s2c4'] },
+      { id: 's3c6', nombre: 'Electivo Antropológico Cristiano', req: ['s2c4'] },
+    ]
+  },
+  {
+    semestre: 4,
+    cursos: [
+      { id: 's4c1', nombre: 'Práctica Inicial I', req: ['s3c4'] },
+      { id: 's4c2', nombre: 'TIC para el Aprendizaje', req: ['s3c4'] },
+      { id: 's4c3', nombre: 'Lenguaje Verbal y su Didáctica', req: ['s3c4'] },
+      { id: 's4c4', nombre: 'Evaluación para el Aprendizaje', req: ['s3c4'] },
+      { id: 's4c5', nombre: 'Pensamiento Científico', req: ['s3c4'] },
+      { id: 's4c6', nombre: 'Literatura Infantil y Artes Escénicas', req: ['s3c4'] },
+    ]
+  },
+  {
+    semestre: 5,
+    cursos: [
+      { id: 's5c1', nombre: 'Práctica Inicial II', req: ['s4c1'] },
+      { id: 's5c2', nombre: 'Educación Inclusiva', req: ['s4c1'] },
+      { id: 's5c3', nombre: 'Artes Musicales y su Didáctica', req: ['s4c1'] },
+      { id: 's5c4', nombre: 'Transiciones Educativas', req: ['s4c1'] },
+      { id: 's5c5', nombre: 'Entorno Sociocultural y su Didáctica', req: ['s4c1'] },
+      { id: 's5c6', nombre: 'Electivo Teológico', req: ['s4c1'] },
+    ]
+  },
+  {
+    semestre: 6,
+    cursos: [
+      { id: 's6c1', nombre: 'Práctica Intermedia I', req: ['s5c1'] },
+      { id: 's6c2', nombre: 'Convivencia y Vida Democrática', req: ['s5c1'] },
+      { id: 's6c3', nombre: 'Diseño y Evaluación de Proyectos', req: ['s5c1'] },
+      { id: 's6c4', nombre: 'Perspectivas Interculturales', req: ['s5c1'] },
+      { id: 's6c5', nombre: 'Atención a NEE', req: ['s5c1'] },
+      { id: 's6c6', nombre: 'Gestión y Liderazgo Educativo', req: ['s5c1'] },
+      { id: 's6c7', nombre: 'Electivo para la Diversidad I', req: ['s5c1'] },
+    ]
+  },
+  {
+    semestre: 7,
+    cursos: [
+      { id: 's7c1', nombre: 'Práctica Intermedia II', req: ['s6c1'] },
+      { id: 's7c2', nombre: 'Investigación Educativa', req: ['s6c1'] },
+      { id: 's7c3', nombre: 'Experiencias Interculturales', req: ['s6c1'] },
+      { id: 's7c4', nombre: 'Familia, Comunidad y Territorio', req: ['s6c1'] },
+      { id: 's7c5', nombre: 'Electivo para la Diversidad II', req: ['s6c1'] },
+    ]
+  },
+  {
+    semestre: 8,
+    cursos: [
+      { id: 's8c1', nombre: 'Práctica Intermedia III', req: ['s7c1'] },
+      { id: 's8c2', nombre: 'Seminario de Investigación', req: ['s7c1'] },
+      { id: 's8c3', nombre: 'Saberes Mapuche para la Infancia', req: ['s7c1'] },
+      { id: 's8c4', nombre: 'Innovación Educativa Intercultural', req: ['s7c1'] },
+      { id: 's8c5', nombre: 'Saberes Pedagógicos y Disciplinarios', req: ['s7c1'] },
+      { id: 's8c6', nombre: 'Ética Profesional', req: ['s7c1'] },
+    ]
+  },
+  {
+    semestre: 9,
+    cursos: [
+      { id: 's9c1', nombre: 'Práctica Profesional', req: ['s8c1', 's8c2'] },
+    ]
+  },
+];
+
+const estado = {};
+
+function crearMalla() {
+  const contenedor = document.getElementById('malla');
+  cursos.forEach(bloque => {
+    const div = document.createElement('div');
+    div.className = 'semestre';
+    div.innerHTML = `<h2>Semestre ${bloque.semestre}</h2>`;
+    bloque.cursos.forEach(ramo => {
+      const span = document.createElement('div');
+      span.className = 'ramo';
+      span.innerText = ramo.nombre;
+      span.dataset.id = ramo.id;
+      if (ramo.req) {
+        span.classList.add('bloqueado');
+        span.dataset.req = ramo.req.join(',');
+      }
+      estado[ramo.id] = false;
+      div.appendChild(span);
+    });
+    contenedor.appendChild(div);
+  });
+}
+
+function desbloquearRamos() {
+  document.querySelectorAll('.ramo').forEach(ramo => {
+    const reqs = ramo.dataset.req;
+    if (!reqs || ramo.classList.contains('aprobado')) return;
+    const requisitos = reqs.split(',');
+    const cumplido = requisitos.every(req => estado[req]);
+    if (cumplido) ramo.classList.remove('bloqueado');
+  });
+}
+
+document.addEventListener('click', e => {
+  if (!e.target.classList.contains('ramo')) return;
+  if (e.target.classList.contains('bloqueado') || e.target.classList.contains('aprobado')) return;
+  e.target.classList.add('aprobado');
+  estado[e.target.dataset.id] = true;
+  desbloquearRamos();
+});
+
+crearMalla();
